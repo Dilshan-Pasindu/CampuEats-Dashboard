@@ -10,30 +10,26 @@ function Hero() {
       <div className="hero-ring hero-ring-2" aria-hidden="true" />
       <div className="hero-ring hero-ring-3" aria-hidden="true" />
 
-      {/* Floating food emoji orbs */}
+      {/* Subtle floating accent dots */}
       <div className="hero-orbs" aria-hidden="true">
-        <div className="orb orb-1">🍔</div>
-        <div className="orb orb-2">🍕</div>
-        <div className="orb orb-3">🍜</div>
-        <div className="orb orb-4">🥗</div>
-        <div className="orb orb-5">🍣</div>
-        <div className="orb orb-6">🧁</div>
-        <div className="orb orb-7">🥪</div>
-        <div className="orb orb-8">☕</div>
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+        <div className="orb orb-3" />
+        <div className="orb orb-4" />
       </div>
 
       {/* Main content */}
       <div className="hero-content">
         <div className="hero-badge">
           <span className="hero-badge-dot" />
-          Campus Food Made Easy
+          Trusted by 1,200+ Students Daily
         </div>
 
-        <h1 className="hero-title">YOUR FAVORITE<br/>CAMPUS CRAVINGS!</h1>
+        <h1 className="hero-title">Fuel Your Campus Life,<br/>One Bite at a Time</h1>
 
         <p className="hero-subtitle">
-          Fresh, delicious meals served hot — right on campus.<br/>
-          Order in minutes, enjoy in seconds.
+          Premium campus dining, delivered with precision.<br/>
+          Fresh ingredients, transparent pricing, zero hassle.
         </p>
 
         <a href="#products" className="hero-btn">

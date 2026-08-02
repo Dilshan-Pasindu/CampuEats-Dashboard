@@ -95,7 +95,7 @@
   animation: rotateSlow 70s linear infinite;
 }
 
-/* ── Floating food emoji orbs ── */
+/* ── Accent orbs — geometric, no emoji ── */
 .hero-orbs {
   position: absolute;
   inset: 0;
@@ -105,26 +105,36 @@
 
 .orb {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 50%;
-  font-size: 1.8rem;
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.30);
   animation: floatY var(--dur, 6s) ease-in-out var(--delay, 0s) infinite;
 }
 
-.orb-1 { --dur: 7s; --delay: 0s;   width: 72px; height: 72px; top: 18%; left: 8%;  font-size: 2rem; }
-.orb-2 { --dur: 9s; --delay: 1s;   width: 56px; height: 56px; top: 60%; left: 6%;  font-size: 1.5rem; }
-.orb-3 { --dur: 6s; --delay: 2s;   width: 80px; height: 80px; top: 30%; left: 18%; font-size: 2.2rem; }
-.orb-4 { --dur: 8s; --delay: 0.5s; width: 64px; height: 64px; top: 72%; left: 22%; font-size: 1.8rem; }
-.orb-5 { --dur: 7s; --delay: 1.5s; width: 88px; height: 88px; top: 15%; right: 8%; font-size: 2.4rem; }
-.orb-6 { --dur: 9s; --delay: 3s;   width: 60px; height: 60px; top: 55%; right: 6%; font-size: 1.6rem; }
-.orb-7 { --dur: 6s; --delay: 0.8s; width: 70px; height: 70px; top: 78%; right: 18%;font-size: 1.9rem; }
-.orb-8 { --dur: 8s; --delay: 2.2s; width: 52px; height: 52px; top: 35%; right: 20%;font-size: 1.4rem; }
+.orb-1 {
+  --dur: 9s; --delay: 0s;
+  width: 320px; height: 320px;
+  top: -80px; left: -80px;
+  background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 70%);
+}
+.orb-2 {
+  --dur: 11s; --delay: 2s;
+  width: 260px; height: 260px;
+  bottom: 40px; right: -60px;
+  background: radial-gradient(circle, rgba(255,167,51,0.05) 0%, transparent 70%);
+}
+.orb-3 {
+  --dur: 8s; --delay: 1s;
+  width: 12px; height: 12px;
+  top: 28%; left: 12%;
+  background: rgba(255,107,53,0.45);
+  box-shadow: 0 0 18px rgba(255,107,53,0.30);
+}
+.orb-4 {
+  --dur: 10s; --delay: 3s;
+  width: 8px; height: 8px;
+  top: 62%; right: 14%;
+  background: rgba(255,209,102,0.50);
+  box-shadow: 0 0 14px rgba(255,209,102,0.25);
+}
 
 /* ── Content ── */
 .hero-content {
@@ -167,20 +177,20 @@
 /* ── Headline ── */
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7.5vw, 6.5rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 1.0;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #FFFFFF 0%, #F0EDE8 25%, #FF6B35 55%, #FFA733 80%, #FFD166 100%);
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-transform: none;
+  margin-bottom: 1.6rem;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F0EDE8 30%, #FF6B35 65%, #FFA733 85%, #FFD166 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation:
     fadeInUp 0.8s ease 0.2s both,
-    shimmer 5s linear 1.2s infinite;
+    shimmer 6s linear 1.2s infinite;
   text-shadow: none;
 }
 
@@ -303,11 +313,11 @@
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
-  .orb-1, .orb-2, .orb-7, .orb-8 { display: none; }
+  .orb-1, .orb-2 { display: none; }
 }
 
 @media (max-width: 640px) {
   .premium-hero  { min-height: 75vh; }
   .hero-stats    { gap: 1.5rem; }
-  .orb-3, .orb-4, .orb-5, .orb-6 { display: none; }
+  .orb-3, .orb-4 { display: none; }
 }
