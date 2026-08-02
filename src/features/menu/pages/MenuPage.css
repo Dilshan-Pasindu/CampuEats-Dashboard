@@ -1,0 +1,95 @@
+/* ============================================================
+   MenuPage — Dark theme search & states
+   ============================================================ */
+
+.menu-page {
+  animation: fadeInUp 0.5s ease both;
+}
+
+/* ── Search wrapper ── */
+.menu-search-wrapper {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.menu-search-icon {
+  position: absolute;
+  left: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 1rem;
+  line-height: 1;
+  transition: color var(--t-base);
+}
+
+.menu-search-wrapper:focus-within .menu-search-icon {
+  color: var(--brand-orange);
+}
+
+.menu-search-input {
+  width: 100%;
+  padding: 0.92rem 1.25rem 0.92rem 2.85rem !important;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-primary) !important;
+  background: var(--bg-input) !important;
+  border: 1.5px solid var(--border-medium) !important;
+  border-radius: var(--r-lg) !important;
+  outline: none;
+  transition:
+    border-color var(--t-base),
+    box-shadow var(--t-base),
+    background var(--t-base);
+  margin-bottom: 0 !important;
+}
+
+.menu-search-input:focus {
+  border-color: var(--brand-orange) !important;
+  background: rgba(255,107,53,0.04) !important;
+  box-shadow: 0 0 0 4px rgba(255,107,53,0.12) !important;
+}
+
+.menu-search-input::placeholder {
+  color: var(--text-muted) !important;
+  font-style: italic;
+}
+
+/* ── Loading / error ── */
+.menu-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 5rem 2rem;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.menu-status-icon {
+  font-size: 3rem;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ── Empty state ── */
+.no-dishes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.no-dishes-icon {
+  font-size: 3rem;
+  margin-bottom: 0.25rem;
+  filter: grayscale(0.4);
+}

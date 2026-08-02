@@ -1,0 +1,304 @@
+/* ============================================================
+   App Layout — Dark Mode Dashboard Shell
+   ============================================================ */
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-base);
+  overflow-x: hidden;
+}
+
+/* ── Dashboard Content ── */
+.dashboard-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 2rem 7rem;
+  background: var(--bg-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top divider glow line */
+.dashboard-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brand-orange), transparent);
+  opacity: 0.5;
+}
+
+/* Ambient background blobs */
+.dashboard-content::after {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,107,53,0.07) 0%, transparent 65%);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+/* ── Dashboard Title ── */
+.dashboard-title {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  background: var(--grad-text-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation:
+    fadeInUp 0.6s ease both,
+    shimmer 4s linear 1s infinite;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Dashboard Card ── */
+.dashboard-card {
+  width: 100%;
+  max-width: 1100px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-xl);
+  padding: 2.5rem 2.5rem 3rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.7s ease 0.1s both;
+  overflow: hidden;
+}
+
+/* Inner glow border on top edge */
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--brand-orange) 30%, var(--brand-amber) 70%, transparent 100%);
+  opacity: 0.6;
+}
+
+/* Bottom-left decorative blob */
+.dashboard-card::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(255,167,51,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+/* ── Tab Navigation ── */
+.dashboard-card > nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-lg);
+  padding: 5px;
+  width: fit-content;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-card > nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.35rem;
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  transition:
+    color var(--t-base),
+    background var(--t-base),
+    box-shadow var(--t-base);
+  white-space: nowrap;
+}
+
+.dashboard-card > nav a:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.05);
+}
+
+.dashboard-card > nav a.active {
+  background: var(--grad-brand);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+  font-weight: 700;
+}
+
+/* ── Inputs inside card ── */
+.dashboard-card input[type="text"],
+.dashboard-card input[type="email"],
+.dashboard-card input[type="number"] {
+  width: 100%;
+  padding: 0.85rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-medium);
+  border-radius: var(--r-md);
+  outline: none;
+  transition:
+    border-color var(--t-base),
+    box-shadow var(--t-base),
+    background var(--t-base);
+}
+
+.dashboard-card input[type="text"]:focus,
+.dashboard-card input[type="email"]:focus,
+.dashboard-card input[type="number"]:focus {
+  border-color: var(--brand-orange);
+  background: rgba(255,107,53,0.04);
+  box-shadow: 0 0 0 4px rgba(255,107,53,0.12);
+}
+
+.dashboard-card input::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Menu Grid ── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.4rem;
+}
+
+/* ── Dish Card ── */
+.dish-card {
+  position: relative;
+  padding: 1.6rem 1.5rem 1.4rem;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border-subtle);
+  background: var(--grad-card);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform var(--t-base),
+    box-shadow var(--t-base),
+    border-color var(--t-base),
+    background var(--t-base);
+  animation: fadeInUp 0.5s ease both;
+}
+
+/* Animated top accent border */
+.dish-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--grad-brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-slow);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+
+/* Glow bloom on hover */
+.dish-card::after {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--t-slow);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.dish-card:hover {
+  transform: translateY(-7px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-strong);
+  background: var(--bg-card-hover);
+}
+
+.dish-card:hover::before { transform: scaleX(1); }
+.dish-card:hover::after  { opacity: 1; }
+
+.dish-card h3 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+  letter-spacing: -0.01em;
+}
+
+.dish-card p {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  background: var(--grad-text-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.025em;
+}
+
+.dish-card small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.18rem 0.6rem;
+  background: rgba(255,107,53,0.10);
+  border: 1px solid rgba(255,107,53,0.20);
+  border-radius: var(--r-full);
+  color: var(--brand-amber);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dish-card span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.55rem;
+  padding: 0.2rem 0.6rem;
+  background: rgba(239,68,68,0.10);
+  border: 1px solid rgba(239,68,68,0.20);
+  border-radius: var(--r-full);
+  color: #F87171;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .dashboard-content { padding: 3rem 1rem 4rem; }
+  .dashboard-title   { font-size: 1.9rem; }
+  .dashboard-card    { padding: 1.5rem 1.25rem 2rem; border-radius: var(--r-lg); }
+  .menu-grid         { grid-template-columns: 1fr; }
+}
