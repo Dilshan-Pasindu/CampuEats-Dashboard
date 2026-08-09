@@ -1,0 +1,53 @@
+using CampusEats.Api.Dtos;
+using CampusEats.Api.Services;
+using Microsoft.AspNetCore.Mvc;
+
+namespace CampusEats.Api.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class MenuController : ControllerBase
+{
+    private readonly IMenuService _svc;
+
+    public MenuController(IMenuService svc)
+        => _svc = svc;
+
+    [HttpGet]
+    public ActionResult<IEnumerable<MenuItemDto>> GetAll()
+        => Ok(_svc.GetAll());
+
+    [HttpGet("{id}")]
+    public ActionResult<MenuItemDto> GetById(int id)
+    {
+        var item = _svc.GetById(id);
+        return item is null ? NotFound() : Ok(item);
+    }
+
+    [HttpPost]
+    public ActionResult<MenuItemDto> Create(
+        [FromBody] CreateMenuItemDto dto)
+    {
+        var created = _svc.Create(dto);
+
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = created.Id },
+            created);
+    }
+    
+    [HttpPut("{id}")] // PUT /api/menu/1
+    public IActionResult Update(int id,
+    [FromBody] CreateMenuItemDto dto)
+    {
+    var ok = _svc.Update(id, dto);
+    return ok ? NoContent() : NotFound(); // 204/404
+    }
+    [HttpDelete("{id}")] // DELETE /api/menu/1
+    public IActionResult Delete(int id)
+    {
+    var ok = _svc.Delete(id);
+    return ok ? NoContent() : NotFound(); // 204/404
+    }
+
+}
