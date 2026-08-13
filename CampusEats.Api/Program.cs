@@ -66,6 +66,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseAuthentication(); // who are you? (validates JWT)
+app.UseAuthorization(); // may you? (checks roles)
+
 app.MapControllers();
 
 app.Run();
