@@ -1,4 +1,7 @@
 using CampusEats.Api.Services;
+using CampusEats.Api.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IMenuService, MenuService>();
+
+builder.Services.AddDbContext<AppDbContext>(opt =>
+ opt.UseNpgsql(builder.Configuration
+ .GetConnectionString("Default")));
 
 var app = builder.Build();
 
@@ -27,3 +34,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
