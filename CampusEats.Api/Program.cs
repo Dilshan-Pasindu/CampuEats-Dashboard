@@ -38,7 +38,19 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
  opt.UseNpgsql(builder.Configuration
  .GetConnectionString("Default")));
 
- 
+ var jwt = builder.Configuration.GetSection("Jwt");
+var key = Encoding.UTF8.GetBytes(jwt["Key"]!);
+builder.Services
+ .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+ .AddJwtBearer(opt => opt.TokenValidationParameters = new()
+ {
+ ValidateIssuer = true, ValidIssuer = jwt["Issuer"],
+ ValidateAudience = true, ValidAudience = jwt["Audience"],
+ ValidateIssuerSigningKey = true,
+ IssuerSigningKey = new SymmetricSecurityKey(key),
+ ValidateLifetime = true
+ });
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -64,7 +76,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
 app.UseAuthentication(); // who are you? (validates JWT)
 app.UseAuthorization(); // may you? (checks roles)
@@ -74,16 +85,3 @@ app.MapControllers();
 app.Run();
 
 
-var jwt = builder.Configuration.GetSection("Jwt");
-var key = Encoding.UTF8.GetBytes(jwt["Key"]!);
-builder.Services
- .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
- .AddJwtBearer(opt => opt.TokenValidationParameters = new()
- {
- ValidateIssuer = true, ValidIssuer = jwt["Issuer"],
- ValidateAudience = true, ValidAudience = jwt["Audience"],
- ValidateIssuerSigningKey = true,
- IssuerSigningKey = new SymmetricSecurityKey(key),
- ValidateLifetime = true
- });
-builder.Services.AddAuthorization();
